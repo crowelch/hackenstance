@@ -9,28 +9,6 @@
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css", rel="stylesheet">
 </head>
 <body>
-	<fb:login-button autologoutlink="true" perms="email,user_birthday,status_update,publish_stream"></fb:login-button>
-	<script>
-	//fb sdk
-window.fbAsyncInit = function() {
-	console.log('yomama');
-        FB.init({
-          appId      : 'your-app-id',
-          xfbml      : true,
-          version    : 'v2.1'
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-
-	//end fb sdk
-	</script>
 	<div class="handlebars-container"></div>
 
 	<script>
@@ -52,30 +30,24 @@ window.fbAsyncInit = function() {
 			}
 		});
 */
-	}
+}
 
 function attachTemplate(response) {
-		var apiJSON = JSON.parse(response);
-		var template = Handlebars.templates['group_selector'];
-		var container = $('.handlebars-container');
-		container.append(template(apiJSON));
+	var apiJSON = JSON.parse(response);
+	var template = Handlebars.templates['group_selector'];
+	var container = $('.handlebars-container');
+	container.append(template(apiJSON));
 }
 
 var ref = new Firebase("https://hackenstance.firebaseio.com");
-ref.authWithOAuthRedirect("facebook", function(error, authData) {
-if (error) {
-console.log("Login Failed!", error);
-} else {
-console.log("Authenticated successfully with payload:", authData);
-var id = authData.facebook.id;
-var usersRef = ref.child("users/" + id);
-usersRef.set(authData);
-console.log('token: ' + authData.facebook.accessToken);
-getFbData(authData.facebook.accessToken);
-}
+ref.authWithOAuthPopup("facebook", function(error, authData) {
+  if (error) {
+    console.log("Login Failed!", error);
+  } else {
+    console.log("Authenticated successfully with payload:", authData);
+  }
 }, {
-remember: "none",
-scope: "email, user_about_me, user_groups, user_likes"
+	scope: "email, user_about_me, user_groups, user_likes"
 });
 
 getFbData()
