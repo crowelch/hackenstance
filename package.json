@@ -1,0 +1,24 @@
+{
+  "name": "hackenstance",
+  "version": "1.0.0",
+  "description": "Bringing people together",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://addisokw@github.com/crowelch/hackenstance.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crowelch/hackenstance/issues"
+  },
+  "homepage": "https://github.com/crowelch/hackenstance",
+  "dependencies": {
+    "fbgraph": "^0.3.0",
+    "firebase": "^2.2.1",
+    "geofire": "^3.2.1"
+  }
+}
