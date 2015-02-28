@@ -10,6 +10,10 @@ var users = require('./routes/users');
 
 var app = express();
 
+var Firebase = require('firebase');
+var firebase = new Firebase('https://hackenstance.firebaseio.com/');
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
