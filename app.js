@@ -18,7 +18,7 @@ var firebase = new Firebase('https://hackenstance.firebaseio.com/');
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'jade');
 
-app.use(methodOverride('X-HTTP-Method-Override'));
+app.use(override('X-HTTP-Method-Override'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
