@@ -18,19 +18,22 @@
 	<div class="handlebars-container"></div>
 
 	<script>
+	var isAuthenticated = false;
 	function myButton() {
-		/*var ref = new Firebase("https://hackenstance.firebaseio.com");
+		var ref = new Firebase("https://hackenstance.firebaseio.com");
 		ref.authWithOAuthPopup("facebook", function(error, authData) {
   			if (error) {
     			console.log("Login Failed!", error);
   			} else {
+  				isAuthenticated = true;
     			console.log("Authenticated successfully with payload:", authData);
   			}
 		}, {
 			scope: "email, user_about_me, user_groups, user_likes"
-		});*/
-
-    			document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify({your: "mom"}));
+		}); 
+		if(isAuthenticated) {
+  			document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify({your: "mom"}));
+  		}
 	}
 	function attachTemplate(response) {
 		var apiJSON = JSON.parse(response);
