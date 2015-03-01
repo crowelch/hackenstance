@@ -39,7 +39,16 @@ function attachTemplate(response) {
 	container.append(template(apiJSON));
 }
 
+function authDataCallback() {
+	if(authData) {
+		console.log("User " + authData.uid + " is logged in with " + authData.provider);
+	} else {
+		console.log('User is logged out');
+	}
+}
+
 var ref = new Firebase("https://hackenstance.firebaseio.com");
+//ref.onAuth(authDataCallback);
 ref.authWithOAuthPopup("facebook", function(error, authData) {
   if (error) {
     console.log("Login Failed!", error);
@@ -49,8 +58,6 @@ ref.authWithOAuthPopup("facebook", function(error, authData) {
 }, {
 	scope: "email, user_about_me, user_groups, user_likes"
 });
-
-getFbData()
 </script>
 </body>
 </html>
