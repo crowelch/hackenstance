@@ -26,9 +26,9 @@
     			document.location = 'pebblejs://close#'
   			} else {
     			console.log("Authenticated successfully with payload:", authData);
-    			window.setTimeout(function() {
-	    			document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify({your: "mom"}));
-    			}, 500);
+    			//window.setTimeout(function() {
+	    		//	document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify({your: "mom"}));
+    			//}, 500);
   			}
 		}, {
 			scope: "email, user_about_me, user_groups, user_likes"
