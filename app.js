@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var jade = require('jade');
 var override = require('method-override');
 
 var app = express();
@@ -16,7 +17,7 @@ var firebase = new Firebase('https://hackenstance.firebaseio.com/');
 
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
+app.set('view engine', 'jade');
 
 app.use(override('X-HTTP-Method-Override'));
 app.use(logger('dev'));
