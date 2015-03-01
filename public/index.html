@@ -23,10 +23,11 @@
 		ref.authWithOAuthPopup("facebook", function(error, authData) {
   			if (error) {
     			console.log("Login Failed!", error);
+    			document.location = 'pebblejs://close#'
   			} else {
     			console.log("Authenticated successfully with payload:", authData);
     			setTimeout(function() {
-	    			document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify({your: "mom"}));
+	    			//document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify({your: "mom"}));
     			}, 500);
   			}
 		}, {
