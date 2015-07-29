@@ -13,6 +13,20 @@ var app = express();
 var Firebase = require('firebase');
 var firebase = new Firebase('https://hackenstance.firebaseio.com/');
 
+var geoFire = new GeoFire(firebase);
+
+geoFire.get('users').then(function(users) {
+    users.forEach(function(user) {
+        if(user.location === null) {
+            console.log('Key not in GeoFire');
+        } else {
+            console.log('location is: ' + location);
+        }
+    });
+}, function(error) {
+    console.log('Error! ' + error);
+});
+
 //var config = require('./config/config.json');
 
 // view engine setup
@@ -28,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/facebook', function(req, res) {
     firebase.child('users/' + req.query.id + '/facebook/accessToken').on('value', function(data) {
-      res.send(data.val()); 
+      res.send(data.val());
     });
 });
 

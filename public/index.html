@@ -2,11 +2,7 @@
 <head>
 	<script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<!--script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script-->
-	<!--script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script-->
-	<!--script src="./javascripts/templates.js"></script-->
 
-	<!--link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css", rel="stylesheet"-->
 	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
@@ -18,29 +14,25 @@
 	<div class="handlebars-container"></div>
 
 	<script>
-	function myButton() {
-		var ref = new Firebase("https://hackenstance.firebaseio.com");
-		ref.authWithOAuthPopup("facebook", function(error, authData) {
-  			if (error) {
-    			console.log("Login Failed!", error);
-    			document.location = 'pebblejs://close#'
-  			} else {
-    			console.log("Authenticated successfully with payload:", authData);
-    			//window.setTimeout(function() {
-	    		//	document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify({your: "mom"}));
-    			//}, 500);
-  			}
-		}, {
-			scope: "email, user_about_me, user_groups, user_likes"
-		});
-	}
-	function attachTemplate(response) {
-		var apiJSON = JSON.parse(response);
-		var template = Handlebars.templates['group_selector'];
-		var container = $('.handlebars-container');
-		container.append(template(apiJSON));
-	}
-
-</script>
+		function myButton() {
+			var ref = new Firebase("https://hackenstance.firebaseio.com");
+			ref.authWithOAuthPopup("facebook", function(error, authData) {
+				if (error) {
+					console.log("Login Failed!", error);
+					document.location = 'pebblejs://close#'
+				} else {
+					console.log("Authenticated successfully with payload:", authData);
+				}
+			}, {
+				scope: "email, user_about_me, user_groups, user_likes"
+			});
+		}
+		function attachTemplate(response) {
+			var apiJSON = JSON.parse(response);
+			var template = Handlebars.templates['group_selector'];
+			var container = $('.handlebars-container');
+			container.append(template(apiJSON));
+		}
+	</script>
 </body>
 </html>
